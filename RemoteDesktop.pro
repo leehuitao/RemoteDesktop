@@ -25,16 +25,12 @@ DEFINES += WIN32_LEAN_AND_MEAN
 # In order to do so, uncomment the following line.
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
-INCLUDEPATH += $$PWD/../include
-DEPENDPATH += $$PWD/../include
-INCLUDEPATH += $$PWD\..\..\include\webrtc
-INCLUDEPATH += $$PWD\..\..\include\webrtc\third_party\abseil-cpp
-INCLUDEPATH += $$PWD/../include
-DEPENDPATH += $$PWD/../include
-INCLUDEPATH += $$PWD/../include/webrtc
-DEPENDPATH += $$PWD/../include/webrtc
-INCLUDEPATH += $$PWD/../include/webrtc/third_party/abseil-cpp
-DEPENDPATH += $$PWD/../include/webrtc/third_party/abseil-cpp
+INCLUDEPATH += $$PWD/include
+DEPENDPATH += $$PWD/include
+INCLUDEPATH += $$PWD/include/webrtc
+DEPENDPATH += $$PWD/include/webrtc
+INCLUDEPATH += $$PWD/include/webrtc/third_party/abseil-cpp
+DEPENDPATH += $$PWD/include/webrtc/third_party/abseil-cpp
 
 SOURCES += \
     data_control.cpp \
@@ -57,15 +53,15 @@ unix {
     DEFINES += WEBRTC_LINUX
     DEFINES += WEBRTC_POXY
     CONFIG(debug, debug|release){
-        DESTDIR =$$PWD/../bin/linux/debug
-        PRE_TARGETDEPS += $$PWD/../lib/linux/debug/libwebrtcd.a
-        LIBS += -L$$PWD/../lib/linux/debug/ -lwebrtc
-        LIBS += -L$$PWD/../lib/linux/debug/ -llibyuv
+        DESTDIR =$$PWD/bin/linux/debug
+        PRE_TARGETDEPS += $$PWD/lib/linux/debug/libwebrtcd.a
+        LIBS += -L$$PWD/lib/linux/debug/ -lwebrtc
+        LIBS += -L$$PWD/lib/linux/debug/ -llibyuv
     }else{
-        DESTDIR =$$PWD/../bin/linux/release
-        PRE_TARGETDEPS += $$PWD/../lib/linux/release/libwebrtc.a
-        LIBS += -L$$PWD/../lib/linux/release/ -lwebrtc
-        LIBS += -L$$PWD/../lib/linux/release/ -llibyuv
+        DESTDIR =$$PWD/bin/linux/release
+        PRE_TARGETDEPS += $$PWD/lib/linux/release/libwebrtc.a
+        LIBS += -L$$PWD/lib/linux/release/ -lwebrtc
+        LIBS += -L$$PWD/lib/linux/release/ -llibyuv
     }
 
 }
@@ -76,14 +72,14 @@ win32{
     DEFINES += WIN32_LEAN_AND_MEAN
     CONFIG(debug, debug|release){
 
-        PRE_TARGETDEPS += $$PWD/../lib/win32/debug/webrtc.lib
-        LIBS += -L$$PWD/../lib/win32/debug/ -lwebrtc
-        LIBS += -L$$PWD/../lib/win32/debug/ -llibyuv
+        PRE_TARGETDEPS += $$PWD/lib/win32/debug/webrtc.lib
+        LIBS += -L$$PWD/lib/win32/debug/ -lwebrtc
+        LIBS += -L$$PWD/lib/win32/debug/ -llibyuv
     }else{
-        DESTDIR =$$PWD/../bin/win32/release
-        PRE_TARGETDEPS += $$PWD/../lib/win32/release/webrtc.lib
-        LIBS += -L$$PWD/../lib/win32/release/ -lwebrtc
-        LIBS += -L$$PWD/../lib/win32/release/ -llibyuv
+        DESTDIR =$$PWD/bin/win32/release
+        PRE_TARGETDEPS += $$PWD/lib/win32/release/webrtc.lib
+        LIBS += -L$$PWD/lib/win32/release/ -lwebrtc
+        LIBS += -L$$PWD/lib/win32/release/ -llibyuv
     }
     LIBS += -lwinmm -lAdvapi32 -lGdi32 -lD3D11 -lDXGI -lws2_32 -lStrmiids
     LIBS += -lOle32 -loleaut32 -luser32 -lIphlpapi -ldxgi -lcrypt32
