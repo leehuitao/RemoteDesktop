@@ -58,6 +58,9 @@ iceServer 设置
 8 turnserverpassword    
 8 isAccusedEnd  是否为被控端  
 
+
+*.exe 192.168.101.145 8083 10 10 192.168.101.183 3478 admin bigant.cn 0
+
 #### 参与贡献
 
 1.leehuitao
