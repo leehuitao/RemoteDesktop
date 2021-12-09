@@ -42,6 +42,7 @@ void WebsocketSession::connected()
 
 void WebsocketSession::error(QAbstractSocket::SocketError error)
 {
+    qDebug()<<error;
     if(callback_)
         callback_->OnError(error);
 }

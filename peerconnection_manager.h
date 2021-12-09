@@ -133,21 +133,20 @@ private:
     QString uid_;
     rtc::scoped_refptr<webrtc::PeerConnectionInterface>			connection_;
     rtc::scoped_refptr<webrtc::PeerConnectionFactoryInterface>	factory_;
-    QTimer* time;
-    SingalingData heart;
-    std::unique_ptr<uint8_t[]> m_image;
-    std::unique_ptr<uint8_t[]> m_yuv;
-    webrtc::SessionDescriptionInterface *offerdesc = nullptr;
-    webrtc::SessionDescriptionInterface *answerdesc = nullptr;
-
-    rtc::scoped_refptr<ScreenImp> screenCapture_ =  nullptr;
-    rtc::scoped_refptr<DesktopImp> deskCapture_ =  nullptr;
-    rtc::scoped_refptr<DataChannelInterface> pDataChannel= nullptr;
-    bool isDesktopCapture_ = false;
-    int loaclTrackSourceid_ = 0;
-    DataChannelBundlePrase bundle;
+    QTimer*                                                     time;
+    SingalingData                                               heart;
+    std::unique_ptr<uint8_t[]>                                  m_image;
+    std::unique_ptr<uint8_t[]>                                  m_yuv;
+    webrtc::SessionDescriptionInterface *                       offerdesc = nullptr;
+    webrtc::SessionDescriptionInterface *                       answerdesc = nullptr;
+    rtc::scoped_refptr<ScreenImp>                               screenCapture_ =  nullptr;
+    rtc::scoped_refptr<DesktopImp>                              deskCapture_ =  nullptr;
+    rtc::scoped_refptr<DataChannelInterface>                    pDataChannel= nullptr;
+    bool                                                        isDesktopCapture_ = false;
+    int                                                         loaclTrackSourceid_ = 0;
+    DataChannelBundlePrase                                      bundle;
     //是否为被控端
-    bool isAccusedEnd_;
+    bool                                                        isAccusedEnd_;
 };
 
 #endif // PEERCONNECTIONMANAGER_H

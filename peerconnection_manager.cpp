@@ -333,14 +333,13 @@ bool PeerconnectionManager::initPeerConnection(bool dtls, const std::string &tur
     }
     webrtc::PeerConnectionInterface::RTCConfiguration config;
     config.enable_dtls_srtp = 1;//datachannel 通道是否打开
-    config.continual_gathering_policy = webrtc::PeerConnectionInterface::GATHER_CONTINUALLY;
+    config.continual_gathering_policy = webrtc::PeerConnectionInterface::GATHER_ONCE;
     webrtc::PeerConnectionInterface::IceServer server;
     std::string turnurl;
-    turnurl = "turn:" + turnip +":"+turnport;
+    turnurl = "turn:" + turnip;
     server.uri=turnurl;
     server.username = turnusername;
     server.password = turnpwd;
-    config.type = webrtc::PeerConnectionInterface::kRelay;
     config.servers.push_back(server);
     connection_ = factory_->CreatePeerConnection(
                 config, nullptr, nullptr, this);
