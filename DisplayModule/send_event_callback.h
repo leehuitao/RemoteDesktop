@@ -33,7 +33,9 @@ enum EventType{
     MouseLeftDoubleClicked  ,
     KeywordDown             ,
     KeywordUp               ,
-    MouseCursorChange
+    MouseCursorChange       ,
+    MsgType                 ,
+    FileType
 };
 /**
  * @brief 鼠标键盘发送
