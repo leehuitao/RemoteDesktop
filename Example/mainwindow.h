@@ -19,7 +19,7 @@ public:
     MainWindow(QString signserverip,QString signserverport,QString roomid,QString userid,
                std::string turnserverip,std::string turnserverport,std::string turnserverusername,
                std::string turnserverpassword,QString isAccusedEnd,QWidget *parent = nullptr);
-    ~MainWindow();
+    ~MainWindow() override;
     //DataCallBack
     virtual void OnRemoteImage(uint8_t * data,int w ,int h) override;
     virtual void OnLocalDesktopImage(QImage image) override;
@@ -27,6 +27,10 @@ public:
     virtual void OnLocalChooseDesktopImage(int sourceid,QString title,QImage image) override;
     virtual void OnLocalChoseScreenImage(int sourceid,QString title,QImage image) override;
     virtual void OnDataChannel(SingalingData) override;
+
+protected:
+    void dragEnterEvent(QDragEnterEvent *event) override;
+    void dropEvent(QDropEvent *event) override;
 private Q_SLOTS:
     void on_start_capture_clicked();
     void on_init_clicked();

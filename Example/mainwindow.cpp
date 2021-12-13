@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "SignalServerModule/signal_server_manager.h"
+#include <QMimeData>
+#include <QMouseEvent>
 MainWindow::MainWindow(QString signserverip, QString signserverport, QString roomid,
                        QString userid, std::string turnserverip, std::string turnserverport,
                        std::string turnserverusername, std::string turnserverpassword, QString isAccusedEnd_, QWidget *parent):
@@ -39,6 +41,8 @@ MainWindow::MainWindow(QString signserverip, QString signserverport, QString roo
     //trun服务器连接成功回调
     connect(Interface::Instance(),&Interface::signOnIceConnected,this,&MainWindow::on_start_capture_clicked);
     on_join_clicked();
+    //接受拖放文件
+    this->setAcceptDrops(true);
 }
 
 MainWindow::~MainWindow()
@@ -75,6 +79,20 @@ void MainWindow::OnDataChannel(SingalingData data)
 {
     qDebug()<<"data"<<data.type<<data.uid<<data.data;
 }
+
+void MainWindow::dragEnterEvent(QDragEnterEvent *event)
+{
+    event->acceptProposedAction();
+}
+
+void MainWindow::dropEvent(QDropEvent *event)
+{
+    QString name = event->mimeData()->urls().first().toString();
+    QString path = event->mimeData()->urls().first().path();
+
+}
+
+
 #define PAUSE "pause"
 #define CONTINUE "continue"
 #define JOINROOM "join"
