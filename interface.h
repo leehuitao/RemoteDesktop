@@ -49,6 +49,8 @@ public:
 
     void sendDataChannel(SingalingData);
 
+    void sendDataChannel(const  QString & msg);
+
     void getScreenSourceList(QMap<int,QString>&  SourceMap);
     /**
      * @brief 初始化peerconnection
