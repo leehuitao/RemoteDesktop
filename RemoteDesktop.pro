@@ -34,6 +34,7 @@ DEPENDPATH += $$PWD/include/webrtc/third_party/abseil-cpp
 
 SOURCES += \
     data_control.cpp \
+    databuffer_task_thread.cpp \
     datachannel_bundle_prase.cpp \
     interface.cpp \
     peerconnection_manager.cpp \
@@ -42,8 +43,10 @@ SOURCES += \
 HEADERS += \
     RemoteDesktop_global.h \
     data_control.h \
+    databuffer_task_thread.h \
     datachannel_bundle_prase.h \
     interface.h \
+    message_protocol_define.h \
     peerconnection_manager.h \
     remote_desktop.h
 

@@ -75,31 +75,33 @@ void DataControl::OnStateChange()
 
 void DataControl::OnMessage(const webrtc::DataBuffer &buffer)
 {
-    SingalingData data;
-    char * ch = new char[buffer.size()];
-    memcpy(ch,(char*)buffer.data.data(),buffer.size());
-    std::string str(ch);
-    QString newS = QString::fromStdString(str);
-    auto index = newS.lastIndexOf("}");
-    //auto index = str.find_first_of("}");
-    newS = newS.mid(0,index+1);
-    QByteArray response(newS.toLocal8Bit().data(),int(newS.size()));
-    prase.parseResponse(response,data);
-    qDebug()<<"datachannel recive "<<newS <<"total ="<< newS.size()<<"index = "<<index;
-    if(data.data["type"].toInt() != MouseCursorChange){
-        Event event;
-        event.type = data.data["type"].toInt();
-        event.posx = data.data["posx"].toInt();
-        event.posy = data.data["posy"].toInt();
-        event.delta = data.data["delta"].toInt();
-        event.keyword = data.data["keyword"].toInt();
-        event.coursorShape = data.data["coursorShape"].toInt();
-        if(callback_)
-            callback_->OnMouseEvent(event);
+    qDebug()<<__FUNCTION__;
+    m_dataBufferTaskThread->addTask(buffer);
+//    SingalingData data;
+//    char * ch = new char[buffer.size()];
+//    memcpy(ch,(char*)buffer.data.data(),buffer.size());
+//    std::string str(ch);
+//    QString newS = QString::fromStdString(str);
+//    auto index = newS.lastIndexOf("}");
+//    //auto index = str.find_first_of("}");
+//    newS = newS.mid(0,index+1);
+//    QByteArray response(newS.toLocal8Bit().data(),int(newS.size()));
+//    prase.parseResponse(response,data);
+//    qDebug()<<"datachannel recive "<<newS <<"total ="<< newS.size()<<"index = "<<index;
+//    if(data.data["type"].toInt() != MouseCursorChange){
+//        Event event;
+//        event.type = data.data["type"].toInt();
+//        event.posx = data.data["posx"].toInt();
+//        event.posy = data.data["posy"].toInt();
+//        event.delta = data.data["delta"].toInt();
+//        event.keyword = data.data["keyword"].toInt();
+//        event.coursorShape = data.data["coursorShape"].toInt();
+//        if(callback_)
+//            callback_->OnMouseEvent(event);
 
-    }else{
-        signOnCursorEvent(data.data["coursorShape"].toInt());
-    }
+//    }else{
+//        signOnCursorEvent(data.data["coursorShape"].toInt());
+//    }
 
 }
 
@@ -110,5 +112,6 @@ void DataControl::setCallback(ImageDataCallBack *callback)
 
 DataControl::DataControl()
 {
-
+    m_dataBufferTaskThread = new DataBufferTaskThread;
+    m_dataBufferTaskThread->start();
 }

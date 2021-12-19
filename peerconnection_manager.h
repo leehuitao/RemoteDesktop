@@ -25,6 +25,7 @@
 #include "data_control.h"
 #include "datachannel_bundle_prase.h"
 #include "DisplayModule/send_event_callback.h"
+#include "message_protocol_define.h"
 #define JOIN        "room_join"
 #define READY       "peer_ready"
 #define OFFER       "offer"
@@ -68,6 +69,7 @@ public:
     void captureOneImage();
     void getScreenSourceList(QMap<int,QString>&  SourceMap);
     void sendDataChannel(SingalingData);
+    void sendDataChannel(const  QString & msg);
 public:
     //PeerConnectionObserver
     void OnSignalingChange(

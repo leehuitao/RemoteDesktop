@@ -9,6 +9,7 @@
 #include "datachannel_bundle_prase.h"
 #include "SignalServerModule/SignalCallBack.h"
 #include "DisplayModule/send_event_callback.h"
+#include "databuffer_task_thread.h"
 class ImageDataCallBack{
 public:
     ImageDataCallBack(){}
@@ -53,12 +54,13 @@ private:
 
     DataControl();
 private:
-    static DataControl * dataControl_;
-    std::unique_ptr<uint8_t[]> m_image;
-    DataChannelBundlePrase prase;
-    int ui_width = 1920;
-    int ui_height = 1080;
-    ImageDataCallBack *callback_;
+    static DataControl *            dataControl_;
+    std::unique_ptr<uint8_t[]>      m_image;
+    DataChannelBundlePrase          prase;
+    int                             ui_width = 1920;
+    int                             ui_height = 1080;
+    ImageDataCallBack *             callback_;
+    DataBufferTaskThread *          m_dataBufferTaskThread;
 };
 
 #endif // DATACONTROL_H

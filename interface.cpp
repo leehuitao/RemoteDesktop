@@ -61,6 +61,11 @@ void Interface::sendDataChannel(SingalingData data)
     peerConnection->sendDataChannel(data);
 }
 
+void Interface::sendDataChannel(const QString &msg)
+{
+    peerConnection->sendDataChannel(msg);
+}
+
 void Interface::getScreenSourceList(QMap<int, QString> &SourceMap)
 {
     peerConnection->getScreenSourceList(SourceMap);

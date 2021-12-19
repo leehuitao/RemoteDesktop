@@ -171,6 +171,16 @@ void PeerconnectionManager::sendDataChannel(SingalingData data)
     pDataChannel->Send(webrtc::DataBuffer(str));
 }
 
+void PeerconnectionManager::sendDataChannel(const QString &msg)
+{
+    MsgDataBuffer buffer;
+    buffer.header.cmd = 1;
+    buffer.body = msg.toUtf8().data();
+    rtc::CopyOnWriteBuffer writeBuffer;
+    writeBuffer.SetData<char>(buffer.toByte().data(),buffer.toByte().size());
+    pDataChannel->Send(webrtc::DataBuffer(writeBuffer,1));
+}
+
 void PeerconnectionManager::setLoaclTrackDefault(bool isDesktopCapture, const int loaclTrackSourceid)
 {
     isDesktopCapture_ = isDesktopCapture;
@@ -192,10 +202,11 @@ void PeerconnectionManager::SendKeywordEvent(Event event)
 {
     if(pDataChannel == nullptr)
         return;
-    QString req;
-    bundle.bundleDataChannel(event,roomid_,uid_,req);
-    std::string str = std::string((const char *)req.toLocal8Bit());
-    pDataChannel->Send(webrtc::DataBuffer(str));
+//    QString req;
+//    bundle.bundleDataChannel(event,roomid_,uid_,req);
+//    std::string str = std::string((const char *)req.toLocal8Bit());
+//    pDataChannel->Send(webrtc::DataBuffer(str));
+    sendDataChannel("123");
 }
 
 void PeerconnectionManager::slotReceiveJoin(SingalingData data)
