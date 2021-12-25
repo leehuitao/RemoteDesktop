@@ -15,10 +15,23 @@ https://github.com/coturn/coturn
 
 webrtc,的访问流程为
 
-1. 尝试直连.
-2. 通过stun服务器进行穿透
-3. 无法穿透则通过turn服务器中转.
-
+1.首先将自己注册到远程桌面库的接口里
+2.初始化peerconnectionManager （无法正常使用构造函数构造 要使用静态函数返回rtc::scoped_refptr<PeerconnectionManager>）
+3.初始化桌面截图和应用截图
+4.构建PeerConnectionFactory和PeerConnection
+注意：windows下是要在构造时声明使用win32socketserver
+   初始化PeerConnectionFactory时要添加信号线程不然有些函数无法正常回调
+   创建PeerConnection时webrtc::PeerConnectionInterface::RTCConfiguration配置文件中
+enable_dtls_srtp为是否打开datachannel通道
+servers为打洞服务器和中继服务配置
+5.创建datachannel通道
+6.设置本地源
+7.初始化websocket（信号服务器连接）
+8.加入房间
+9.收到offer则设置远程流并生成answer返回
+10.收到answer则设置远程流
+11.本地会生成candidate需要发送到远程
+12.这个时候本地和远程就通了
 
 ## 快速入门
 ```
