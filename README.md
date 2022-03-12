@@ -2,7 +2,7 @@
 
 #### 介绍
 webrtc  远程桌面控制
-
+默认分支为无文件传输版本，master分支会做一些文件传输的测试
 #### 软件架构
 客户端：     webrtc+QT+VS2019
 信号服务器： golang  客户端通讯方式 websocket
